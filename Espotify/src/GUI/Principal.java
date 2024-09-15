@@ -66,7 +66,8 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
+        SeguirUsuario = new javax.swing.JMenuItem();
+        DejarDeSeguirUsuario = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
@@ -210,13 +211,21 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem7);
 
-        jMenuItem14.setText("Seguir Usuario");
-        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+        SeguirUsuario.setText("Seguir Usuario");
+        SeguirUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem14ActionPerformed(evt);
+                SeguirUsuarioActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem14);
+        jMenu2.add(SeguirUsuario);
+
+        DejarDeSeguirUsuario.setText("Dejar de seguir");
+        DejarDeSeguirUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DejarDeSeguirUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu2.add(DejarDeSeguirUsuario);
 
         jMenu10.setText("Eliminar Favorito");
 
@@ -406,19 +415,19 @@ public class Principal extends javax.swing.JFrame {
     lista_favorito.show(); 
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+    private void SeguirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeguirUsuarioActionPerformed
         SeguirUsuario seguir_user = new SeguirUsuario();
     
 
-    desktopPane.add(seguir_user ,JLayeredPane.DEFAULT_LAYER);
-    seguir_user .setVisible(true);
-    seguir_user .setClosable(true);
-    seguir_user .setMaximizable(true);
-    seguir_user .setIconifiable(true);
-    seguir_user .setResizable(true);
-    seguir_user .toFront();
-    seguir_user .show(); 
-    }//GEN-LAST:event_jMenuItem14ActionPerformed
+        desktopPane.add(seguir_user ,JLayeredPane.DEFAULT_LAYER);
+        seguir_user .setVisible(true);
+        seguir_user .setClosable(true);
+        seguir_user .setMaximizable(true);
+        seguir_user .setIconifiable(true);
+        seguir_user .setResizable(true);
+        seguir_user .toFront();
+        seguir_user .show(); 
+    }//GEN-LAST:event_SeguirUsuarioActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         EliminarAlbumFavorito eliminar_album = new EliminarAlbumFavorito();
@@ -490,6 +499,20 @@ public class Principal extends javax.swing.JFrame {
     publicar_lista .show(); 
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
+    private void DejarDeSeguirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DejarDeSeguirUsuarioActionPerformed
+        DejarDeSeguirUsuario dejar_de_seguir_user = new DejarDeSeguirUsuario();
+    
+
+        desktopPane.add(dejar_de_seguir_user ,JLayeredPane.DEFAULT_LAYER);
+        dejar_de_seguir_user.setVisible(true);
+        dejar_de_seguir_user.setClosable(true);
+        dejar_de_seguir_user.setMaximizable(true);
+        dejar_de_seguir_user.setIconifiable(true);
+        dejar_de_seguir_user.setResizable(true);
+        dejar_de_seguir_user.toFront();
+        dejar_de_seguir_user.show(); 
+    }//GEN-LAST:event_DejarDeSeguirUsuarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -528,6 +551,8 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AltaAlbum;
+    private javax.swing.JMenuItem DejarDeSeguirUsuario;
+    private javax.swing.JMenuItem SeguirUsuario;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
@@ -548,7 +573,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
