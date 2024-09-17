@@ -5,6 +5,8 @@ import Logica.Artista;
 import Logica.Cliente;
 import Logica.Genero;
 import Logica.ListaRep;
+import Logica.ListaRepGeneral;
+import Logica.ListaRepParticular;
 import Logica.Tema;
 import Persis.exceptions.PreexistingEntityException;
 import java.util.ArrayList;
@@ -169,4 +171,18 @@ public void crearAlbum(Album album) throws Exception {
         return artjpa.findArtista(mail);//devuelvo el artista
     }
 
+    public ListaRepGeneral findListaRep_Por_Defecto_ByNombre(String nombreLista) throws Exception {
+        return listjpa.findListaRep_Por_Defecto_ByNombre(nombreLista);
+    }
+
+public void editListaPrivada(ListaRepParticular lista) throws Exception{//puede ser que la tenga q cambiar a particular
+        listjpa.edit(lista);//le ando la lista hecha publica
+    } 
+
+     public Album findAlbumId(Long id){
+        
+        return albjpa.findAlbum(id);
+    }
+
+       
 }

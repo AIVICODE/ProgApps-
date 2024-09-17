@@ -28,8 +28,7 @@ public class ClienteJpaController implements Serializable {
     }
     private EntityManagerFactory emf = null;
 
-    
-     public ClienteJpaController() {
+    public ClienteJpaController() {
         this.emf = Persistence.createEntityManagerFactory("EspotifyPU");
     }
     

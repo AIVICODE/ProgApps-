@@ -57,6 +57,11 @@ public class ConsultaPerfilArtista extends javax.swing.JInternalFrame {
                 comboMailsItemStateChanged(evt);
             }
         });
+        comboMails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboMailsActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Seleccione el nickname del Artista a mostrar:");
 
@@ -194,6 +199,10 @@ public class ConsultaPerfilArtista extends javax.swing.JInternalFrame {
         textoMostrarBio.setVisible(true);
         textoMostrarWeb.setVisible(true);
     }//GEN-LAST:event_comboMailsItemStateChanged
+
+    private void comboMailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMailsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboMailsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

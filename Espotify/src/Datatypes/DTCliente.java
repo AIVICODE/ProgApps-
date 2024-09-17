@@ -1,24 +1,20 @@
+
 package Datatypes;
 
+import Logica.ListaRep;
 import java.util.Date;
 import java.util.List;
 
-public class DTArtista extends DTUsuario {
-    private String biografia;
-    private String sitioWeb;
 
-    public DTArtista(String nickname, String nombre, String apellido, String contrasenia, String imagen, Date fechaNac, String correo, String biografia, String sitioWeb) {
-        super(nickname, nombre, apellido, correo, fechaNac, contrasenia,imagen);
-        this.biografia = biografia;
-        this.sitioWeb = sitioWeb;
+public class DTCliente extends DTUsuario{
+    
+    public DTCliente(){}
+    
+    public DTCliente(String nickname, String nombre, String apellido, String correo, Date fechaNac, String contrasenia, String imagen) {
+        super(nickname, nombre, apellido, correo, fechaNac, contrasenia, imagen);
     }
-
-    public DTArtista(String nickname, String nombre, String apellido, String contrasenia, Date fechaNac, String correo, String biografia, String sitioWeb, List<String> listaUsuariosFavoritos) {
-        super(nickname, nombre, apellido, correo, fechaNac, contrasenia, listaUsuariosFavoritos);
-        this.biografia = biografia;
-        this.sitioWeb = sitioWeb;
-    }
-
+    private List<ListaRep> listaReproduccion;
+    
     public String getNickname() {
         return nickname;
     }
@@ -74,20 +70,10 @@ public class DTArtista extends DTUsuario {
     public void setFechaNac(Date fechaNac) {
         this.fechaNac = fechaNac;
     }
-
-    public String getBiografia() {
-        return biografia;
+    public List<ListaRep> getListaReproduccion() {
+        return listaReproduccion;
     }
-
-    public void setBiografia(String biografia) {
-        this.biografia = biografia;
-    }
-
-    public String getSitioWeb() {
-        return sitioWeb;
-    }
-
-    public void setSitioWeb(String sitioWeb) {
-        this.sitioWeb = sitioWeb;
+    public void setListaReproduccion(List<ListaRep> listaReproduccion) {
+        this.listaReproduccion = listaReproduccion;
     }
 }
