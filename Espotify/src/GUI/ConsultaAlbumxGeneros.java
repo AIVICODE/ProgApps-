@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JDesktopPane;
+import javax.swing.JLayeredPane;
 
 /**
  *
@@ -239,6 +241,36 @@ public class ConsultaAlbumxGeneros extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        //CONFIGURAR QUE VAYA A MOSTRAR TEMAS
+        
+        String genero = (String) comboGeneros.getSelectedItem();
+        String nombreAlbum = (String) comboAlbumes.getSelectedItem();
+                  
+        try {
+            DTAlbum album; 
+            album = control.findAlbumxNombreDT(nombreAlbum);
+             MostrarTemas pantalla_tema = new MostrarTemas();
+        
+       pantalla_tema.setTemas(album.getListaTemas());
+        JDesktopPane desktopPan=getDesktopPane();
+    desktopPan.add(pantalla_tema,JLayeredPane.DEFAULT_LAYER);
+    pantalla_tema.setVisible(true);
+    pantalla_tema.setClosable(true);
+    pantalla_tema.setMaximizable(true);
+    pantalla_tema.setIconifiable(true);
+    pantalla_tema.setResizable(true);
+    pantalla_tema.toFront();
+    pantalla_tema.show();
+        } catch (Exception ex) {
+            Logger.getLogger(ConsultaAlbumxArtista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    
+        
+        
+        
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
