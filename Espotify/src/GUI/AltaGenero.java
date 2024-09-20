@@ -4,17 +4,34 @@
  */
 package GUI;
 
+import java.util.Calendar;
+import javax.swing.JSpinner;
+import Datatypes.DTUsuario;
+import Logica.Controlador;
+import static java.awt.SystemColor.control;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Gonza
  */
 public class AltaGenero extends javax.swing.JInternalFrame {
-
+    
+    
+    Controlador control= new Controlador();
     /**
      * Creates new form AltaGenero
      */
     public AltaGenero() {
         initComponents();
+        setTitle("Alta Genero");
+        setSize(600, 500);
+        setVisible(true);
+        
     }
 
     /**
@@ -26,21 +43,122 @@ public class AltaGenero extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
+        jLabelGenero = new javax.swing.JLabel();
+        jLabelPadre = new javax.swing.JLabel();
+        jTextGenero = new javax.swing.JTextField();
+        jTextPadre = new javax.swing.JTextField();
+        jButtonAgregar = new javax.swing.JButton();
+        jButtonCerrar = new javax.swing.JButton();
+
+        jScrollPane1.setViewportView(jEditorPane1);
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+
+        jLabelGenero.setText("Nuevo Genero:");
+
+        jLabelPadre.setText("Genero Padre (Opcional) :");
+
+        jButtonAgregar.setText("Agregar");
+        jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarActionPerformed(evt);
+            }
+        });
+
+        jButtonCerrar.setText("Cerrar");
+        jButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCerrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 469, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonAgregar)
+                        .addGap(31, 31, 31)
+                        .addComponent(jButtonCerrar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(68, 68, 68)
+                                .addComponent(jLabelGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jLabelPadre, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextGenero)
+                            .addComponent(jTextPadre, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 347, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelGenero)
+                    .addComponent(jTextGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPadre)
+                    .addComponent(jTextPadre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, 81)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAgregar)
+                    .addComponent(jButtonCerrar))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
+        setVisible(false);
+    }//GEN-LAST:event_jButtonCerrarActionPerformed
+
+    private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
+        
+        String genero = jTextGenero.getText();
+        String padre = jTextPadre.getText();
+        
+        if (genero.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Genero no puede ser vacio.", "Érror", JOptionPane.INFORMATION_MESSAGE);
+        return;
+        }
+        
+        if (padre.isEmpty()) {
+        padre = "GENERO";  
+    }
+        try {
+        control.CrearGenero(genero, padre);
+        JOptionPane.showMessageDialog(null, "Género agregado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); 
+    
+    }
+          setVisible(false);
+    }//GEN-LAST:event_jButtonAgregarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAgregar;
+    private javax.swing.JButton jButtonCerrar;
+    private javax.swing.JEditorPane jEditorPane1;
+    private javax.swing.JLabel jLabelGenero;
+    private javax.swing.JLabel jLabelPadre;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextGenero;
+    private javax.swing.JTextField jTextPadre;
     // End of variables declaration//GEN-END:variables
 }
