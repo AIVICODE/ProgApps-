@@ -157,4 +157,8 @@ public class Artista extends Usuario implements Serializable {
             .findFirst()
             .orElseThrow(() -> new Exception("Álbum '" + nombreAlbum + "' no encontrado para el artista " + this.getNombre()));
     }
+
+    String getCorreo() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

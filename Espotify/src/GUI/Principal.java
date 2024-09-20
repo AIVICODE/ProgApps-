@@ -280,6 +280,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu12.add(jMenuItem20);
 
         jMenuItem21.setText("Por Genero");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem21ActionPerformed(evt);
+            }
+        });
         jMenu12.add(jMenuItem21);
 
         jMenu2.add(jMenu12);
@@ -521,6 +526,21 @@ public class Principal extends javax.swing.JFrame {
     consulta_album .toFront();
     consulta_album .show(); 
     }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+        // TODO add your handling code here:
+               ConsultaAlbumxGeneros consulta_alb= new ConsultaAlbumxGeneros();
+    
+
+    desktopPane.add(consulta_alb ,JLayeredPane.DEFAULT_LAYER);
+    consulta_alb .setVisible(true);
+    consulta_alb .setClosable(true);
+    consulta_alb .setMaximizable(true);
+    consulta_alb .setIconifiable(true);
+    consulta_alb .setResizable(true);
+    consulta_alb .toFront();
+    consulta_alb .show(); 
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     /**
      * @param args the command line arguments

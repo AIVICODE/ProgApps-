@@ -5,6 +5,7 @@ import Datatypes.DTArtista;
 import Datatypes.DTCliente;
 import Datatypes.DTTema;
 import Datatypes.DTUsuario;
+import static Logica.ListaRep_.listaTemas;
 import Persis.ControladoraPersistencia;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -15,6 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import javax.persistence.metamodel.ListAttribute;
 import javax.swing.tree.TreeModel;
 
 public class Controlador {
@@ -657,12 +659,12 @@ public class Controlador {
     }
 
     public void Cargar_Datos_Prueba() throws Exception {
-        Cargar_Perfiles();
+       // Cargar_Perfiles();
         Cargar_Generos();
-       Cargar_Albumes();
-        Cargar_Seguidores();
-       Cargar_Listas();
-       CargarFavoritos();
+       //Cargar_Albumes();
+        //Cargar_Seguidores();
+       //Cargar_Listas();
+       //CargarFavoritos();
     }
 
     private void Cargar_Perfiles() {
@@ -2147,5 +2149,97 @@ public DTAlbum findAlbumPorArtistaYNombre(String correoArtista, String nombreAlb
         dtartista
     );
 }
+
+    public List<Genero> listaGeneros() {
+        return controlpersis.listaGeneros();//retorno la lista de personas de la BD
+    }
+    
+    public List<String> MostrarNombreGeneros() {
+        
+        List<Genero> listaGenero = listaGeneros();
+        List<String> nombreG = new ArrayList<>();
+        for (Genero auxG: listaGenero){
+            nombreG.add(auxG.getNombre());
+        }
+        return nombreG;
+    }
+
+    
+    public List<String> findDTAlbumPorGenero(String string) {
+     
+        //Le paso una lista de albumes que tengan al genero pasado por parametro, en su lista de generos
+        
+        List<Album> albumes = controlpersis.listaAlbumes(); //Obtengo todos los albumes
+        //Quiero crear una lista de DTAlbumes
+        List<String> nombreAlbumes = new ArrayList<>();
+        //Recorrer la lista de objetos de albumes y averiguar si el genero pasado por parametro, pertenece a su lista de generos
+        for (Album auxA : albumes){
+            //Si el genero por parametro, pertenece a la lista de generos del album (lo guardo en un datatype y lo meto a la lista de DT)
+            for (Genero g : auxA.getListaGeneros()){
+                if (g.getNombre().equals(string)){
+                    nombreAlbumes.add(auxA.getNombre());
+                }
+            }
+        }
+        return nombreAlbumes;          
+ } 
+
+    private DTAlbum DTAlbum(String nombre, int anioCreacion, String imagen, List<String> generosDT, List<DTTema> dtTemas, DTArtista dtArtista) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public DTAlbum findAlbumxNombreDT (String string) throws Exception{
+        
+        //Me llega el album seleccionado en el combo box y lo convierto en DTAlbum
+        Album albumEncontrado = controlpersis.findAlbumByNombre(string);
+        Artista artista = albumEncontrado.getArtista();
+          List<String> generosDT = new ArrayList<>();
+    for (Genero auxG : albumEncontrado.getListaGeneros()) {
+        generosDT.add(auxG.getNombre());
+    }
+    
+    // Crear el objeto DTArtista
+    DTArtista dtartista = new DTArtista(
+        artista.getNickname(),
+        artista.getNombre(),
+        artista.getApellido(),
+        artista.getContrasenia(),
+        artista.getImagen(),
+        artista.getFechaNac(),
+        artista.getMail(),
+        artista.getBiografia(),
+        artista.getSitioWeb()
+    );
+    
+    // Crear la lista de temas del álbum
+    List<DTTema> dtTemas = new ArrayList<>();
+    for (Tema auxT : albumEncontrado.getListaTemas()) {
+        long duracionSegundos = auxT.getDuracionSegundos();
+        int minutos = (int) (duracionSegundos / 60);
+        int segundos = (int) (duracionSegundos % 60);
+        
+        DTTema dttema = new DTTema(auxT.getNombre(), minutos, segundos, auxT.getDireccion());
+        dtTemas.add(dttema);
+    }
+    
+    // Crear y retornar el DTAlbum
+    return new DTAlbum(
+        albumEncontrado.getNombre(),
+        albumEncontrado.getAnioCreacion(),
+        albumEncontrado.getImagen(),
+        generosDT,
+        dtTemas,
+        dtartista
+    );
+        
+        
+        
+
+    
+    
+    
+    
+    }
+
 }
 

@@ -184,5 +184,13 @@ public void editListaPrivada(ListaRepParticular lista) throws Exception{//puede 
         return albjpa.findAlbum(id);
     }
 
+    public List<Genero> listaGeneros (){
+        return genjpa.findGeneroEntities(); //me devuelve una lista con todos los artistas de la BD para mostrarlos de ahi
+    }
+    
+    
+    public List<Album> listaAlbumes(){
+        return albjpa.findAlbumEntities(); //me devuelve una lista con todos los albumes de la BD para mostrarlos de ahi
+    }
        
 }
