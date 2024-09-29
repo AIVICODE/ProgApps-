@@ -159,7 +159,7 @@ public void crearAlbum(Album album) throws Exception {
     
     
 
-    public ListaRep findListaRepByNombre(String recurso) throws Exception{
+    public List<ListaRep> findListaRepByNombre(String recurso) throws Exception{
         try {
         return listjpa.findListaRepByNombre(recurso);
     }catch (Exception e) {
@@ -167,6 +167,12 @@ public void crearAlbum(Album album) throws Exception {
         throw new Exception("No se encuentra el nombre de la lista de reproduccion: " +recurso, e);
     }
     }
+    
+    public List<String> NombreListasRepParticular(){
+        return listjpa.NombreDeListasParticulares();
+}
+    
+    
         public Album findOneAlbumByNombre(String recurso) throws Exception{
         
            try {
@@ -200,7 +206,9 @@ public void crearAlbum(Album album) throws Exception {
 public void editListaPrivada(ListaRepParticular lista) throws Exception{//puede ser que la tenga q cambiar a particular
         listjpa.edit(lista);//le ando la lista hecha publica
     } 
-
+public void editListaPorDefecto(ListaRepGeneral lista) throws Exception{
+    listjpa.edit(lista);
+}
      public Album findAlbumId(Long id){
         
         return albjpa.findAlbum(id);
@@ -256,14 +264,21 @@ public Artista encontrarArtistaPorNickname(String nickname) {
         return listjpa.findListaRepEntities();
     }
     
-    
-    
         public List<Genero> listaGeneros (){
         return genjpa.findGeneroEntities(); //me devuelve una lista con todos los artistas de la BD para mostrarlos de ahi
     }
     
-    
     public List<Album> listaAlbumes(){
         return albjpa.findAlbumEntities(); //me devuelve una lista con todos los albumes de la BD para mostrarlos de ahi
     }
+    
+    public void modificarBiografiaArtista(){
+        artjpa.modificarBiografiaArtista();
+    }
+
+    public List<String> NombreListasRep_Defecto() {
+       return listjpa.NombreDeListasDefault();
+    }
+    
+  
 }

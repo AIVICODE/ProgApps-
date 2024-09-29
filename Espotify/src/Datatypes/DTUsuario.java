@@ -67,4 +67,7 @@ public class DTUsuario {
     public void setListaUsuariosFavoritos(List<String> listaUsuariosFavoritos) {
         this.listaUsuariosFavoritos = listaUsuariosFavoritos;
     }
+    public String getImagen() {
+        return imagen;
+    }
 }
