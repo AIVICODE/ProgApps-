@@ -9,6 +9,8 @@ import Datatypes.DTSub;
 import Datatypes.DTTema;
 import Datatypes.DTUsuario;
 import Persis.ControladoraPersistencia;
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -152,4 +154,12 @@ public interface IControlador {
     public abstract List<DTSub> listarSubscripciones() throws Exception;
 
     public abstract void modificarEstadoSuscripcion(Long id, String nuevoEstado)throws Exception;
+    
+    public abstract String obtenerExtensionArchivo(String nombreArchivo);
+    
+    public abstract String guardarImagenesEnCarpeta(File archivoImagen, String nickname) throws IOException;
+    
+    public abstract String guardarTemaEnCarpeta(File archivoTema, String nombreTema) throws IOException;
+    
+    public abstract String guardarImagenesAlbum(File archivoImagen, String nombreAlbum, String nombreArtista) throws IOException;
 }
