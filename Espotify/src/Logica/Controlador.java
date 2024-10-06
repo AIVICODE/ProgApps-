@@ -3339,6 +3339,30 @@ public void AgregarTema_De_ListaDef_A_ListaDef(String lista, String lista_where_
         Files.copy(archivoImagen.toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
         return carpetaImagenes + nombreArchivo;
     }
+    public String guardarTemaEnCarpeta(File archivoTema, String nombreTema) throws IOException{
+        String carpetaTemas = "temas/";
+        File directorio = new File(carpetaTemas);
+        if (!directorio.exists()) {
+            directorio.mkdirs();
+        }
+        String extension = obtenerExtensionArchivo(archivoTema.getName());
+        String nombreArchivo = nombreTema + "." + extension;
+        File destino = new File(directorio, nombreArchivo);
+        Files.copy(archivoTema.toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        return carpetaTemas + nombreArchivo;
+    }
+    public String guardarImagenesAlbum(File archivoImagen, String nombreAlbum, String nombreArtista) throws IOException {
+        String carpetaImagenes = "imagenes_album/";
+        File directorio = new File(carpetaImagenes);
+        if (!directorio.exists()) {
+            directorio.mkdirs();
+        }
+        String extension = obtenerExtensionArchivo(archivoImagen.getName());
+        String nombreArchivo =nombreAlbum+"-"+encontrarNicknameArtista(nombreArtista)+ "." + extension;
+        File destino = new File(directorio, nombreArchivo);
+        Files.copy(archivoImagen.toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        return carpetaImagenes + nombreArchivo;
+    }
     
     
 }

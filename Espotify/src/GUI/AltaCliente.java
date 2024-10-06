@@ -318,8 +318,8 @@ public class AltaCliente extends javax.swing.JInternalFrame {
             String extension = control.obtenerExtensionArchivo(archivoSeleccionado.getName());
             if (extension.equals("png") || extension.equals("jpg") || extension.equals("jpeg")) {
                 ImageIcon icono = new ImageIcon(archivoSeleccionado.getAbsolutePath());
-                Image imagen = icono.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);  // Escalar la imagen para mostrarla en JLabel8
-                jLabel8.setIcon(new ImageIcon(imagen));  // Mostrar la vista previa
+                Image imagen = icono.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH); //escalar la imagen para mostrarla en JLabel8
+                jLabel8.setIcon(new ImageIcon(imagen));
 
                 txtImagen.setText(archivoSeleccionado.getAbsolutePath());
             } else {

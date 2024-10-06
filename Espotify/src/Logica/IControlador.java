@@ -139,5 +139,7 @@ public interface IControlador {
     public abstract String obtenerExtensionArchivo(String nombreArchivo);
 
     public abstract String guardarImagenesEnCarpeta(File archivoImagen, String nickname) throws IOException;
+    public abstract String guardarTemaEnCarpeta(File archivoTema, String nombreTema) throws IOException;
+    public abstract String guardarImagenesAlbum(File archivoImagen, String nombreAlbum, String nombreArtista) throws IOException;
 
 }
