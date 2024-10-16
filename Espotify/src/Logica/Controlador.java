@@ -3701,27 +3701,28 @@ public boolean esCorreo(String input) {
         return input.matches(regexCorreo);
     }
 
-public DTUsuario login(String usuario, String pass) throws Exception {
-        DTCliente cliente;
-        DTArtista artista;
-        Cliente cli;
-        Artista art;
-
+    public DTUsuario login(String usuario, String pass) throws Exception {
+        DTCliente cliente = null;
+        DTArtista artista = null;
         if (esCorreo(usuario)) {
-            cli = controlpersis.findClienteByCorreo(usuario);
-            art = controlpersis.findArtistaByCorreo(usuario);
-            cliente = new DTCliente(cli.getNickname(), cli.getNombre(), cli.getApellido(), cli.getMail(), cli.fechaNac, cli.getContrasenia(), cli.getImagen());
-            artista = new DTArtista(
-                art.getNickname(),
-                art.getNombre(),
-                art.getApellido(),
-                art.getContrasenia(),
-                art.getImagen(),
-                art.getFechaNac(),
-                art.getMail(),
-                art.getBiografia(),
-                art.getSitioWeb()
-        );
+            Cliente cli = controlpersis.findClienteByCorreo(usuario);
+            Artista art = controlpersis.findArtistaByCorreo(usuario);
+            if (cli != null) {
+                cliente = new DTCliente(cli.getNickname(), cli.getNombre(), cli.getApellido(), cli.getMail(), cli.getFechaNac(), cli.getContrasenia(), cli.getImagen());
+            }
+            if (art != null) {
+                artista = new DTArtista(
+                        art.getNickname(),
+                        art.getNombre(),
+                        art.getApellido(),
+                        art.getContrasenia(),
+                        art.getImagen(),
+                        art.getFechaNac(),
+                        art.getMail(),
+                        art.getBiografia(),
+                        art.getSitioWeb()
+                );
+            }
         } else {
             cliente = encontrarClientePorNickname(usuario);
             artista = encontrarDTArtistaPorNickname(usuario);
@@ -3730,18 +3731,31 @@ public DTUsuario login(String usuario, String pass) throws Exception {
             if (cliente.getContrasenia().equals(pass)) {
                 return cliente;
             } else {
-                throw new Exception("Contraseña incorrecta");
+                throw new Exception("Contraseña incorrecta para cliente");
             }
         }
         if (artista != null) {
             if (artista.getContrasenia().equals(pass)) {
                 return artista;
             } else {
-                throw new Exception("Contraseña incorrecta");
+                throw new Exception("Contraseña incorrecta para artista");
             }
         }
         throw new Exception("Usuario no encontrado.");
     }
 
+    public String guardarImagenesLista(File archivoImagen, String nombreAlbum, String nombreArtista) throws IOException {
+        String carpetaImagenes = "imagenes_listarep/";
+        File directorio = new File(carpetaImagenes);
+        if (!directorio.exists()) {
+            directorio.mkdirs();
+        }
+        String extension = obtenerExtensionArchivo(archivoImagen.getName());
+        String nombreArchivo = nombreAlbum + "-" + encontrarNicknameArtista(nombreArtista) + "." + extension;
+        File destino = new File(directorio, nombreArchivo);
+        Files.copy(archivoImagen.toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        return carpetaImagenes + nombreArchivo;
+    }
+    
 }
 

@@ -169,4 +169,6 @@ public interface IControlador {
     public abstract boolean esCorreo(String input);
     
     public abstract DTUsuario login(String usuario, String pass)throws Exception;
+    
+    public String guardarImagenesLista(File archivoImagen, String nombreAlbum, String nombreArtista) throws IOException;
 }
