@@ -170,5 +170,6 @@ public interface IControlador {
     
     public abstract DTUsuario login(String usuario, String pass)throws Exception;
     
+    public abstract List<DTListaRep> obtenerDTListaPorClientepublica(String correoCliente) ;
     public String guardarImagenesLista(File archivoImagen, String nombreAlbum, String nombreArtista) throws IOException;
 }

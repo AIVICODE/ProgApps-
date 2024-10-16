@@ -5,6 +5,7 @@
 package Servlets;
 
 import Datatypes.DTAlbum;
+import Datatypes.DTListaRep;
 import Datatypes.DTTema;
 import Logica.Fabrica;
 import Logica.IControlador;
@@ -12,19 +13,14 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
 
-/**
- *
- * @author ivan
- */
+import com.google.gson.Gson;
+import java.util.List;
+
 @WebServlet(name = "SvObtenerTemas", urlPatterns = {"/SvObtenerTemas"})
 public class SvObtenerTemas extends HttpServlet {
     Fabrica fabrica = Fabrica.getInstance();
