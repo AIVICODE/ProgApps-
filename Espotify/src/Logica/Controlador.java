@@ -258,6 +258,7 @@ public class Controlador implements IControlador {
         // Encuentra al cliente por su correo
         try {
             Cliente cliente = controlpersis.findClienteByCorreo(correoCliente);
+            
 
             if (cliente != null) {
                 // Crear una nueva instancia de ListaRep
@@ -2132,7 +2133,7 @@ public class Controlador implements IControlador {
             throw new Exception(e.getMessage());
         }
     }
-//nuevo PUBLICAR LISTA
+//nuevo PUBLICAR LISTA CrearListaRepParticular
 
     public DTCliente encontrarClientePorNickname(String nick) {
         List<Cliente> clientes = listaClientes();
@@ -3816,14 +3817,14 @@ public boolean esCorreo(String input) {
         throw new Exception("Usuario no encontrado.");
     }
 
-    public String guardarImagenesLista(File archivoImagen, String nombreAlbum, String nombreArtista) throws IOException {
+    public String guardarImagenesLista(File archivoImagen, String nombreLista, String nombreArtista) throws IOException {
         String carpetaImagenes = "imagenes_listarep/";
         File directorio = new File(carpetaImagenes);
         if (!directorio.exists()) {
             directorio.mkdirs();
         }
         String extension = obtenerExtensionArchivo(archivoImagen.getName());
-        String nombreArchivo = nombreAlbum + "-" + encontrarNicknameArtista(nombreArtista) + "." + extension;
+        String nombreArchivo = nombreLista + "-" + encontrarNicknameArtista(nombreArtista) + "." + extension;
         File destino = new File(directorio, nombreArchivo);
         Files.copy(archivoImagen.toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
         return carpetaImagenes + nombreArchivo;
