@@ -45,6 +45,7 @@ public interface IControlador {
     public abstract Cliente encontrarCliente(String mail);
    public abstract List<Artista> listaArtistas();
     public abstract Artista encontrarArtista(String mail);
+    public abstract boolean estaSiguiendoUsuario(String nicknameSeguidor, String nicknameSeguido);
     public abstract void seguirUsuario(String correoSeguidor, String correoSeguido) throws Exception;
     public abstract void dejarSeguirUsuario(String correoSeguidor, String correoSeguido) throws Exception;
     public abstract void Cargar_Datos_Prueba() throws Exception;

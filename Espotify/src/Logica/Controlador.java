@@ -716,6 +716,24 @@ public class Controlador implements IControlador {
     public Artista encontrarArtista(String mail) {
         return controlpersis.encontrarArtista(mail);//la persis me manda el cliente encontrado
     }
+    
+    public boolean estaSiguiendoUsuario(String nicknameSeguidor, String nicknameSeguido) {
+    Cliente seguidor = encontrarClientePorNicknameTipoCli(nicknameSeguidor);
+    
+    if (seguidor != null) {
+        for (Cliente c : seguidor.getClientesSeguidos()) {
+            if (c.getNickname().equals(nicknameSeguido)) {
+                return true;
+            }
+        }
+        for (Artista a : seguidor.getArtistasSeguidos()) {
+            if (a.getNickname().equals(nicknameSeguido)) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
     public void seguirUsuario(String correoSeguidor, String correoSeguido) throws Exception {
         Cliente seguidor = encontrarCliente(correoSeguidor);
