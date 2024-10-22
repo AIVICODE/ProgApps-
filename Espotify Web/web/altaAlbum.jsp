@@ -116,17 +116,16 @@
         });
 
 
-        function actualizarListaTemas() {
+    function actualizarListaTemas() {
     const listaTemas = document.getElementById('listaTemas');
     listaTemas.innerHTML = ''; // Limpiar lista
 
     for (let i = 0; i < temas.length; i++) {
         const tema = temas[i];
         const li = document.createElement('li');
-        li.innerHTML = `
-        ${tema.nombre} (${tema.minutos}:${tema.segundos})
-            <button type="button" class="delete-button btn btn-danger btn-sm" onclick="eliminarTema(${i})">Eliminar</button>
-        `;
+        // Concatenación de cadenas usando el operador +
+        li.innerHTML = tema.nombre + " (" + tema.minutos + ":" + tema.segundos + ")" +
+            '<button type="button" class="delete-button btn btn-danger btn-sm" onclick="eliminarTema(' + i + ')">Eliminar</button>';
         listaTemas.appendChild(li);
     }
 }
